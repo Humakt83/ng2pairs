@@ -1,0 +1,29 @@
+{
+  "name": "ng2pairs",
+  "version": "1.0.0",
+  "description": "Angular2 module for pairs game",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "typescript": "^2.1.4",
+    "@angular/common": "^2.2.4",
+    "@angular/core": "^2.2.4",
+    "@angular/forms": "^2.2.4"
+  },
+  "scripts": {
+    "start": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Humakt83/ng2pairs.git"
+  },
+  "keywords": [
+    "homm",
+    "maps"
+  ],
+  "author": "Humakt83",
+  "bugs": {
+    "url": "https://github.com/Humakt83/ng2pairs/issues"
+  },
+  "homepage": "https://github.com/Humakt83/ng2pairs#readme"
+}

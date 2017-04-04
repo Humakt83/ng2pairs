@@ -1,0 +1,12 @@
+<div class="pairsButton" [class.pairsButtonSelected]="selectedDifficulty === difficulty.EASY" (click)="selectDifficulty(difficulty.EASY)">EASY</div>
+<div class="pairsButton" [class.pairsButtonSelected]="selectedDifficulty === difficulty.NORMAL" (click)="selectDifficulty(difficulty.NORMAL)">NORMAL</div>
+<div class="pairsButton" [class.pairsButtonSelected]="selectedDifficulty === difficulty.HARD" (click)="selectDifficulty(difficulty.HARD)">HARD</div>
+<div *ngIf="mode === modes.MULTI" class="playerInputs">    
+    <div class="playerInput" *ngFor="let player of players; let id = index">
+        <label>Player {{id + 1}}</label>
+        <input (blur)="players[id] = $event.target.value" [ngModel]="players[id]">
+    </div>
+    <div class="playerButton" alt="Add player" (click)="addPlayer()">+</div>
+    <div class="playerButton" alt="Remove player" (click)="removePlayer()">-</div>
+</div>
+<div class="pairsButton" (click)="start()">START</div>
