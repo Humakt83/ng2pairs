@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import 'rxjs/Rx';
 import { PairsComponent } from './pairs.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -14,7 +14,15 @@ import { PairsService } from './pairs.service';
         CommonModule,
         FormsModule
     ],
-    providers: [PairsService]
+    providers: [PairsService],
+    exports: [PairsComponent]
 })
 export class PairsModule {
+
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: PairsModule,
+            providers: [PairsService]
+        }
+    }
 }

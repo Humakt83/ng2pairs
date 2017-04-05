@@ -8,10 +8,12 @@
     "typescript": "^2.1.4",
     "@angular/common": "^2.2.4",
     "@angular/core": "^2.2.4",
-    "@angular/forms": "^2.2.4"
+    "@angular/forms": "^2.2.4",
+    "@angular/platform-browser": "^2.2.4"
   },
   "scripts": {
-    "start": "tsc"
+    "start": "tsc",
+    "prepublish": "tsc"
   },
   "repository": {
     "type": "git",
