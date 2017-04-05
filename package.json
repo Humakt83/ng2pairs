@@ -12,8 +12,7 @@
     "@angular/platform-browser": "^2.2.4"
   },
   "scripts": {
-    "start": "tsc",
-    "prepublish": "tsc"
+    "start": "tsc"
   },
   "repository": {
     "type": "git",
