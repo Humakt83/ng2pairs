@@ -1,0 +1,91 @@
+<html>
+<head>
+    <title>ng2pairs example</title>
+    <script src="https://unpkg.com/core-js/client/shim.min.js"></script>
+    <script src="https://unpkg.com/zone.js@0.8.4?main=browser"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.12/system.js"></script>
+    <script>
+        /**var ngVer = '@2.2.4';
+        System.config({
+            map: {
+                '@angular/core': 'https://npmcdn.com/@angular/core' + ngVer,
+                '@angular/common': 'https://npmcdn.com/@angular/common' + ngVer,
+                '@angular/compiler': 'https://npmcdn.com/@angular/compiler' + ngVer,
+                '@angular/forms': 'https://npmcdn.com/@angular/forms' + ngVer,
+                '@angular/platform-browser': 'https://npmcdn.com/@angular/platform-browser' + ngVer,
+                '@angular/platform-browser-dynamic': 'https://npmcdn.com/@angular/platform-browser-dynamic' + ngVer,
+                'angular2-in-memory-web-api': 'https://npmcdn.com/angular2-in-memory-web-api',
+                'rxjs': 'https://npmcdn.com/rxjs@5.0.1'
+            },
+            packages: {
+                'rxjs': { main: 'index'},
+                'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' }
+            }
+        });**/
+
+        (function(global) {
+
+  var ngVer = '@2.2.4';
+
+  //map tells the System loader where to look for things
+  var  map = {
+                '@angular/core': 'https://npmcdn.com/@angular/core' + ngVer,
+                '@angular/common': 'https://npmcdn.com/@angular/common' + ngVer,
+                '@angular/compiler': 'https://npmcdn.com/@angular/compiler' + ngVer,
+                '@angular/forms': 'https://npmcdn.com/@angular/forms' + ngVer,
+                '@angular/platform-browser': 'https://npmcdn.com/@angular/platform-browser' + ngVer,
+                '@angular/platform-browser-dynamic': 'https://npmcdn.com/@angular/platform-browser-dynamic' + ngVer,
+                'angular2-in-memory-web-api': 'https://npmcdn.com/angular2-in-memory-web-api',
+                'rxjs': 'https://npmcdn.com/rxjs@5.0.1'
+            
+ };
+
+  //packages tells the System loader how to load when no filename and/or no extension
+  var packages = {
+    'rxjs':                       { defaultExtension: 'js' },
+    'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
+  };
+
+  var ngPackageNames = [
+    'common',
+    'compiler',
+    'core',
+    'forms',
+    'platform-browser',
+    'platform-browser-dynamic'
+  ];
+
+  // Add map entries for each angular package
+  // only because we're pinning the version with `ngVer`.
+  ngPackageNames.forEach(function(pkgName) {
+    map['@angular/'+pkgName] = 'https://npmcdn.com/@angular/' + pkgName + ngVer;
+  });
+
+  // Add package entries for angular packages
+  ngPackageNames.forEach(function(pkgName) {
+
+    // Bundled (~40 requests):
+    packages['@angular/'+pkgName] = { main: '/bundles/' + pkgName + '.umd.js', defaultExtension: 'js' };
+
+  });
+
+  var config = {
+    map: map,
+    packages: packages
+  };
+
+  System.config(config);
+
+})(this);
+
+    </script>
+    <script>
+        System.config({packages: {dist: {format: 'register', defaultExtension: 'js'}}});
+        System.import('dist/boot')
+            .then(null, console.error.bind(console));
+    </script>
+</head>
+<body>
+    <pairs>Loading...</pairs>
+</body>
+</html>

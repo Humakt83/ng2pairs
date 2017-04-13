@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
-    "module": "commonjs",
+    "module": "system",
     "target": "ES5",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -15,6 +15,7 @@
     "dist"
   ],
   "files": [
-    "index.ts"
+    "index.ts",
+    "boot.ts"
   ]
 }
