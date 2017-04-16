@@ -1,4 +1,4 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { PairsModule } from './src/pairs.module';
+import { ExampleModule } from './example.module';
 const platform = platformBrowserDynamic();
-platform.bootstrapModule(PairsModule);
+platform.bootstrapModule(ExampleModule);

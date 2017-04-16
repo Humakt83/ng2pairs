@@ -10,7 +10,7 @@ import { Pairs } from './pairs';
                     <div class="pairsButton" (click)="toSettings(${GameMode.MULTI})">MULTI</div>
                 </div>
                 <settings *ngIf="!selectGameMode && !gameStarted" [mode]="selectedGameMode" (game)="startGame($event)"></settings>
-                <game *ngIf="gameStarted" [pairs]="pairs"></game>
+                <game *ngIf="gameStarted" [pairs]="pairs" (toMain)="selectGameMode = true; gameStarted = false"></game>
             </div>`,
     styles: [`
         .pairsButton {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Pairs } from '../pairs';
 import { Piece, PairsService } from '../pairs.service';
 
@@ -26,9 +26,11 @@ import { Piece, PairsService } from '../pairs.service';
 
         <div class="gameOver" *ngIf="gameOver">
             {{activePlayer ? activePlayer.name + ' is victorious!': 'Congratulations! You are victorious.'}}
+            <br>            
         </div>
 
         <div class="clicks"> {{clicks}} clicks </div>
+        <div class="pairsButton" (click)="backToMain()">Back to Main</div>
     `,
     styles: [`
         .pairsButton {
@@ -142,6 +144,8 @@ export class GameComponent implements OnInit {
     activePlayer: Player;
     players: Player[] = [];
 
+    @Output() toMain = new EventEmitter();
+
     constructor(private pairsService: PairsService) {}
 
     ngOnInit() {        
@@ -175,13 +179,18 @@ export class GameComponent implements OnInit {
         this.checkGameStatus();
     }
 
+    backToMain() {
+        this.toMain.emit(true);
+    }
+
     private generatePieces() {
+        const tableModifier: number = this.pairs.getNumberOfPieces() > 10 && (this.pairs.getNumberOfPieces() * 2) % 10 === 0 ? 10 : 5;
         this.pieces = this.pairsService.generatePieces(this.pairs.getNumberOfPieces());
-        this.pieceTable = Array((this.pairs.getNumberOfPieces() * 2) / 5);
+        this.pieceTable = Array((this.pairs.getNumberOfPieces() * 2) / tableModifier);
         for (let x = 0; x < this.pieceTable.length; x++) {
             this.pieceTable[x] = [];
-            for (let y = 0; y < 5; y++) {
-                this.pieceTable[x].push(this.pieces[(x*5)+y])
+            for (let y = 0; y < tableModifier; y++) {
+                this.pieceTable[x].push(this.pieces[(x*tableModifier)+y])
             }
         }
     }
@@ -198,6 +207,7 @@ export class GameComponent implements OnInit {
             this.gameOver  = true;
         }
     }
+    
 }
 
 class Player {
