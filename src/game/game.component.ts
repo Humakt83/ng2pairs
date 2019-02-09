@@ -197,7 +197,7 @@ export class GameComponent implements OnInit {
         let highestScore = 0;
         for (let player of this.players) {
             if (player.score > highestScore) {
-                gameOverText = player.name + 'is victorious!';
+                gameOverText = player.name + ' is victorious!';
                 highestScore = player.score;
             } else if (player.score === highestScore) {
                 gameOverText = 'Draw Game';
