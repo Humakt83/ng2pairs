@@ -27,7 +27,7 @@ import { Piece, PairsService } from '../pairs.service';
         </div>
 
         <div class="gameOver" *ngIf="gameOver">
-            {{activePlayer ? activePlayer.name + ' is victorious!': 'Congratulations! You are victorious.'}}
+            {{gameOverText()}}
             <br>            
         </div>
 
@@ -187,6 +187,23 @@ export class GameComponent implements OnInit {
 
     backToMain() {
         this.toMain.emit(true);
+    }
+
+    gameOverText() {
+        if (this.players.length < 2) {
+            return 'Congratulations! You are victorious.'
+        }
+        let gameOverText;
+        let highestScore = 0;
+        for (let player of this.players) {
+            if (player.score > highestScore) {
+                gameOverText = player.name + 'is victorious!';
+                highestScore = player.score;
+            } else if (player.score === highestScore) {
+                gameOverText = 'Draw Game';
+            }
+        }
+        return gameOverText;
     }
 
     private generatePieces() {
