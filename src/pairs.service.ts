@@ -13,12 +13,26 @@ const COLORS: string[] = ['(0,0,0)', '(50, 50, 50)', '(100, 100, 100)', '(150, 1
 export class PairsService {
 
     private pairImages: string[] = [];
+    private cssClasses: string[] = [];
 
     setImages(images: string[]) {
         this.pairImages = images;
     }
 
+    setCssClasses(classes: string[]) {
+        this.cssClasses = classes;
+    }
+
     generatePieces(piecesAmount: number): Piece[] {
+        let pieces: Piece[] = this.generateImagePieces(piecesAmount);
+        let amountLeft = pieces.length > 0 ? piecesAmount - (pieces.length / 2) : piecesAmount;
+        pieces = pieces.concat(this.generateCssClassPieces(amountLeft));
+        amountLeft = pieces.length > 0 ? piecesAmount - (pieces.length / 2) : piecesAmount;
+        pieces = pieces.concat(this.generateColorPieces(amountLeft));
+        return this.shufflePieces(pieces);
+    }
+
+    private generateImagePieces(piecesAmount: number): Piece[] {
         let pieces: Piece[] = [];
         for (let i = 0; i < piecesAmount && this.pairImages.length > i; i++) {
             let piece = new ImagePiece(this.pairImages[i]);
@@ -26,9 +40,17 @@ export class PairsService {
             pieces.push(piece);
             pieces.push(pair);
         }
-        const amountLeft = pieces.length > 0 ? piecesAmount - (pieces.length / 2) : piecesAmount;
-        pieces = pieces.concat(this.generateColorPieces(amountLeft));
-        pieces = this.shufflePieces(pieces);
+        return pieces;
+    }
+
+    private generateCssClassPieces(amountLeft: number): Piece[] {
+        let pieces: Piece[] = [];
+        for (let i = 0; i < amountLeft && this.cssClasses.length > i; i++) {
+            let piece = new CssClassPiece(this.cssClasses[i]);
+            let pair = new CssClassPiece(this.cssClasses[i], piece);
+            pieces.push(piece);
+            pieces.push(pair);
+        }
         return pieces;
     }
 
@@ -80,6 +102,12 @@ export abstract class Piece {
 export class ImagePiece extends Piece {
 
     constructor(public image: string, pair: Piece = undefined) {
+        super(pair);
+    }
+}
+
+export class CssClassPiece extends Piece {
+    constructor(public cssClass: string, pair: Piece = undefined) {
         super(pair);
     }
 }

@@ -34,10 +34,11 @@ export class MyComponent implements OnInit {
     constructor(private pairsService: PairsService) {        
     }
 
-    ngOnInit() {        
-        this.pairsService.setImages(['path-to-image1/image1.png', 'path-to-image2/image2.png']));
+    ngOnInit() {
+        this.pairsService.setImages(['path-to-image1/image1.png', 'path-to-image2/image2.png']);
     }
 }
 ```
 
 `
+Above can be applied for custom cssClasses for pairs, just call `this.pairsService.setCssClasses(['classRed', 'classBlue'])`
