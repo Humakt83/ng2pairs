@@ -50,7 +50,7 @@ import { Piece, PairsService } from '../pairs.service';
         }
 
         .piece--default {
-            background: linear-gradient(to top, black, gray, black;
+            background: linear-gradient(to top, black, gray, black);
         }
 
         .pairsButton:hover {
