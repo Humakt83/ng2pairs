@@ -15,7 +15,8 @@ import { Piece, PairsService } from '../pairs.service';
             <table>
                 <tr *ngFor="let row of pieceTable">
                     <td *ngFor="let column of row" (click)="click(column)">
-                        <div *ngIf="!column.image && !column.cssClass|| !column.turned" [style.background]="(column.turned ? 'linear-gradient(to left, ' + column.color1 + ', ' + column.color2 + ')' : 'linear-gradient(to top, black, gray, black') | safeCSS"></div>
+                        <div *ngIf="!column.turned" class="piece--default" ></div>
+                        <div *ngIf="!column.image && !column.cssClass && !colum.turned" [style.background]="'linear-gradient(to left, ' + column.color1 + ', ' + column.color2 + ')' | safeCSS"></div>
                         <div *ngIf="column.cssClass && column.turned" [class]="column.cssClass"></div>
                         <div *ngIf="column.image && column.turned">
                             <img [src]="column.image">
@@ -46,6 +47,10 @@ import { Piece, PairsService } from '../pairs.service';
             display: inline-block;
             text-align: center;
             cursor: pointer;
+        }
+
+        .piece--default {
+            background: linear-gradient(to top, black, gray, black;
         }
 
         .pairsButton:hover {
