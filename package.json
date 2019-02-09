@@ -1,6 +1,6 @@
 {
   "name": "ng2pairs",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Angular2 module for pairs game",
   "dependencies": {},
   "devDependencies": {
