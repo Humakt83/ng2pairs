@@ -33,6 +33,7 @@ import { Piece, PairsService } from '../pairs.service';
 
         <div class="clicks"> {{clicks}} clicks </div>
         <div class="pairsButton" (click)="backToMain()">Back to Main</div>
+        <div class="pairsButton" (click)="restart()">Restart</div>
     `,
     styles: [`
         .pairsButton {
@@ -183,6 +184,13 @@ export class GameComponent implements OnInit {
             }
         }
         this.checkGameStatus();
+    }
+
+    restart() {
+        this.ngOnInit();
+        this.clicks = 0;
+        this.clickedPieces = [];
+        this.gameOver = true;
     }
 
     backToMain() {
