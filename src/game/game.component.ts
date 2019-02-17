@@ -190,7 +190,7 @@ export class GameComponent implements OnInit {
         this.ngOnInit();
         this.clicks = 0;
         this.clickedPieces = [];
-        this.gameOver = true;
+        this.gameOver = false;
     }
 
     backToMain() {
