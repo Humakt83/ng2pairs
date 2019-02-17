@@ -163,7 +163,7 @@ export class GameComponent implements OnInit {
     }
 
     click(piece: Piece) {
-        if (piece.found) return;
+        if (piece.found || piece.turned) return;
         this.clicks++;
         if (this.clickedPieces.length > 1) {
             this.clickedPieces.forEach(p => p.turned = false);
