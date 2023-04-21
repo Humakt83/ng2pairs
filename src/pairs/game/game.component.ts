@@ -221,8 +221,7 @@ export class GameComponent implements OnInit {
                     pieceTable2[x].push(this.pieces[(x*tableModifier)+y])
                 }
             }
-            this.pieceTable = pieceTable2
-            console.log(this.pieceTable);
+            this.pieceTable = pieceTable2;
         }
     }
 

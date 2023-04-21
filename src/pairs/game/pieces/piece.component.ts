@@ -29,7 +29,6 @@ export class PieceComponent implements OnInit {
     }
 
     ngOnInit() {
-      console.log(this.piece?.display);
       this.displayHtml = this.sanitized.bypassSecurityTrustHtml(this.piece ? this.piece.display : '')
     }
 
