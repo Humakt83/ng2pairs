@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Piece, ImagePiece, CssClassPiece, ColorPiece } from './game/pieces/piece';
 
 const COLOR_PREFIX: string = 'rgb';
 const COLORS: string[] = ['(0,0,0)', '(50, 50, 50)', '(100, 100, 100)', '(150, 150, 150)', '(200, 200, 200)', '(250, 250, 250)',
@@ -82,39 +83,4 @@ export class PairsService {
         return array;
     }
 
-}
-
-export abstract class Piece {
-
-    turned: boolean = false;
-    found: boolean = false;
-    pair: Piece;
-    
-    constructor(pair: Piece = undefined) {
-        if (pair) {
-            this.pair = pair;
-            pair.pair = this;
-        }
-    }
-
-}
-
-export class ImagePiece extends Piece {
-
-    constructor(public image: string, pair: Piece = undefined) {
-        super(pair);
-    }
-}
-
-export class CssClassPiece extends Piece {
-    constructor(public cssClass: string, pair: Piece = undefined) {
-        super(pair);
-    }
-}
-
-export class ColorPiece extends Piece {
-    
-    constructor(public color1: string, public color2: string, pair: Piece = undefined) {
-        super(pair);
-    }
 }

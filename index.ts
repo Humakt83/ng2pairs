@@ -1,3 +1,3 @@
-export { PairsModule } from './src/pairs.module';
-export { PairsService } from './src/pairs.service';
-export { PairsComponent } from './src/pairs.component';
+export { PairsModule } from './src/pairs/pairs.module';
+export { PairsService } from './src/pairs/pairs.service';
+export { PairsComponent } from './src/pairs/pairs.component';

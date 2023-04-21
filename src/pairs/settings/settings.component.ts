@@ -12,7 +12,7 @@ import { Pairs } from '../pairs';
         <div *ngIf="mode === modes.MULTI" class="playerInputs">    
             <div class="playerInput" *ngFor="let player of players; let id = index">
                 <label>Player {{id + 1}}</label>
-                <input (blur)="players[id] = $event.target.value" [ngModel]="players[id]">
+                <input (blur)="setPlayerName(id, $event.target)" [ngModel]="players[id]">
             </div>
             <div class="playerButton" alt="Add player" (click)="addPlayer()">+</div>
             <div class="playerButton" alt="Remove player" (click)="removePlayer()">-</div>
@@ -99,7 +99,7 @@ import { Pairs } from '../pairs';
 })
 export class SettingsComponent {
 
-    @Input() mode: GameMode;
+    @Input() mode!: GameMode;
 
     @Output() game: EventEmitter<Pairs> = new EventEmitter<Pairs>();
 
@@ -111,7 +111,7 @@ export class SettingsComponent {
 
     players: string[] = ['Player 1', 'Player 2'];
 
-    addPlayer() {
+    addPlayer() {
         this.players.push('Player ' + (this.players.length + 1));
     }
 
@@ -123,6 +123,10 @@ export class SettingsComponent {
 
     selectDifficulty(difficulty: Difficulty) {
         this.selectedDifficulty = difficulty;
+    }
+
+    setPlayerName(id : number, target: EventTarget | null) {
+        this.players[id] = (target as HTMLInputElement).value;
     }
 
     start() {

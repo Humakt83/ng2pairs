@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Pairs } from '../pairs';
-import { Piece, PairsService } from '../pairs.service';
+import { PairsService } from '../pairs.service';
+import { Piece } from './pieces/piece';
 
 @Component({
     selector: 'game',
@@ -15,12 +16,7 @@ import { Piece, PairsService } from '../pairs.service';
             <table>
                 <tr *ngFor="let row of pieceTable">
                     <td *ngFor="let column of row" (click)="click(column)">
-                        <div *ngIf="!column.turned" class="piece--default" ></div>
-                        <div *ngIf="!column.image && !column.cssClass && !colum.turned" [style.background]="'linear-gradient(to left, ' + column.color1 + ', ' + column.color2 + ')' | safeCSS"></div>
-                        <div *ngIf="column.cssClass && column.turned" [class]="column.cssClass"></div>
-                        <div *ngIf="column.image && column.turned">
-                            <img [src]="column.image">
-                        </div>
+                        <piece [piece]="column"></piece>
                     </td>
                 </tr>
             </table>
@@ -142,13 +138,13 @@ import { Piece, PairsService } from '../pairs.service';
 })
 export class GameComponent implements OnInit {
 
-    @Input() pairs: Pairs;
+    @Input() pairs: Pairs | undefined;
     pieces: Piece[] = [];
-    pieceTable: Piece[][];
+    pieceTable: Piece[][] | undefined;
     clickedPieces: Piece[] = [];
     clicks: number = 0;
     gameOver: boolean = false;
-    activePlayer: Player;
+    activePlayer: Player | undefined;
     players: Player[] = [];
 
     @Output() toMain = new EventEmitter();
@@ -157,7 +153,7 @@ export class GameComponent implements OnInit {
 
     ngOnInit() {        
         this.generatePieces();
-        if (this.pairs.playerNames.length > 1) {
+        if (this.pairs && this.pairs.playerNames.length > 1) {
             this.players = this.pairs.playerNames.map(n => new Player(n));
             this.activePlayer = this.players[0];
         }
@@ -215,14 +211,18 @@ export class GameComponent implements OnInit {
     }
 
     private generatePieces() {
-        const tableModifier: number = this.pairs.getNumberOfPieces() > 10 && (this.pairs.getNumberOfPieces() * 2) % 10 === 0 ? 10 : 5;
-        this.pieces = this.pairsService.generatePieces(this.pairs.getNumberOfPieces());
-        this.pieceTable = Array((this.pairs.getNumberOfPieces() * 2) / tableModifier);
-        for (let x = 0; x < this.pieceTable.length; x++) {
-            this.pieceTable[x] = [];
-            for (let y = 0; y < tableModifier; y++) {
-                this.pieceTable[x].push(this.pieces[(x*tableModifier)+y])
+        if (this.pairs) {
+            const tableModifier: number = this.pairs.getNumberOfPieces() > 10 && (this.pairs.getNumberOfPieces() * 2) % 10 === 0 ? 10 : 5;
+            this.pieces = this.pairsService.generatePieces(this.pairs.getNumberOfPieces());
+            let pieceTable2 = Array((this.pairs.getNumberOfPieces() * 2) / tableModifier);
+            for (let x = 0; x < pieceTable2.length; x++) {
+                pieceTable2[x] = [];
+                for (let y = 0; y < tableModifier; y++) {
+                    pieceTable2[x].push(this.pieces[(x*tableModifier)+y])
+                }
             }
+            this.pieceTable = pieceTable2
+            console.log(this.pieceTable);
         }
     }
 

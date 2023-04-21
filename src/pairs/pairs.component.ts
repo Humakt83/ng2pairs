@@ -6,8 +6,8 @@ import { Pairs } from './pairs';
     selector: 'pairs',
     template: `<div class="pairs">
                 <div *ngIf="selectGameMode">
-                    <div class="pairsButton" (click)="toSettings(${GameMode.SINGLE})">SINGLE</div>
-                    <div class="pairsButton" (click)="toSettings(${GameMode.MULTI})">MULTI</div>
+                    <div class="pairsButton" (click)="toSettingsSinglePlayer()">SINGLE</div>
+                    <div class="pairsButton" (click)="toSettingsMultiPlayer()">MULTI</div>
                 </div>
                 <settings *ngIf="!selectGameMode && !gameStarted" [mode]="selectedGameMode" (game)="startGame($event)"></settings>
                 <game *ngIf="gameStarted" [pairs]="pairs" (toMain)="selectGameMode = true; gameStarted = false"></game>
@@ -49,13 +49,18 @@ import { Pairs } from './pairs';
 export class PairsComponent {
 
     selectGameMode : boolean = true;
-    selectedGameMode : GameMode;
+    selectedGameMode : GameMode = GameMode.SINGLE;
     gameStarted: boolean = false;
-    pairs: Pairs;
+    pairs: Pairs | undefined;
 
-    toSettings(mode: GameMode) {
+    toSettingsSinglePlayer() {
         this.selectGameMode = false;
-        this.selectedGameMode = mode;
+        this.selectedGameMode = GameMode.SINGLE;
+    }
+
+    toSettingsMultiPlayer() {
+        this.selectGameMode = false;
+        this.selectedGameMode = GameMode.MULTI;
     }
 
     startGame(pairs: Pairs) {
