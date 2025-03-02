@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { Piece } from './piece';
+import { ImagePiece, Piece } from './piece';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 
 @Component({
@@ -30,7 +30,7 @@ export class PieceComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.displayHtml = this.sanitized.bypassSecurityTrustHtml(this.piece ? this.piece.display : '')
+      this.displayHtml = this.sanitized.bypassSecurityTrustHtml(this.piece ? this.piece.display : '');
     }
 
 }

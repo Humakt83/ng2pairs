@@ -1,7 +1,6 @@
 import { NgModule }       from '@angular/core';
 import { BrowserModule  } from '@angular/platform-browser';
-import { PairsModule } from './pairs/pairs.module';
-import { PairsComponent } from './pairs/pairs.component';
+import { PairsComponent, PairsModule } from 'ng2pairs';
 
 @NgModule({
     declarations: [],

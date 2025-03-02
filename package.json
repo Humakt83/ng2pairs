@@ -14,6 +14,7 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
+    "ng-packagr": "^19.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "typescript": "~5.5.0",
@@ -23,6 +24,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-library": "ng build ng2pairs",
     "watch": "ng build --watch --configuration development"
   },
   "repository": {
@@ -36,6 +38,9 @@
   "author": "Humakt83",
   "bugs": {
     "url": "https://github.com/Humakt83/ng2pairs/issues"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
   },
   "homepage": "https://github.com/Humakt83/ng2pairs#readme"
 }

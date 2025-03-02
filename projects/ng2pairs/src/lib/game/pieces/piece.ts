@@ -19,7 +19,7 @@ export class ImagePiece extends Piece {
   constructor(public image: string, pair: Piece | undefined = undefined) {
       super(pair);
       this.display = `<div>
-                        <img [src]="${this.image}">
+                        <img src="${this.image}">
                       </div>`;
   }
 
