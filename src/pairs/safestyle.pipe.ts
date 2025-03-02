@@ -1,7 +1,7 @@
 import { Pipe } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-@Pipe({name: 'safeCSS'})
+@Pipe({name: 'safeCSS', standalone: false})
 export class SafeStylePipe {
 
     constructor(public sanitizer: DomSanitizer){}

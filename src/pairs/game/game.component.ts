@@ -5,6 +5,7 @@ import { Piece } from './pieces/piece';
 
 @Component({
     selector: 'game',
+    standalone: false,
     template: `
         <div  *ngIf="activePlayer">
             <div class="player" *ngFor="let player of players" [class.highlightPlayer]="activePlayer===player">

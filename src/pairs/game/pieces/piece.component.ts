@@ -18,6 +18,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
         height: 100%;
       }
     `],
+    standalone: false,
     encapsulation: ViewEncapsulation.None,
 })
 export class PieceComponent implements OnInit {

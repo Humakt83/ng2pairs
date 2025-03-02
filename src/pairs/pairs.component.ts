@@ -4,6 +4,7 @@ import { Pairs } from './pairs';
 
 @Component({
     selector: 'pairs',
+    standalone: false,
     template: `<div class="pairs">
                 <div *ngIf="selectGameMode">
                     <div class="pairsButton" (click)="toSettingsSinglePlayer()">SINGLE</div>

@@ -5,6 +5,7 @@ import { Pairs } from '../pairs';
 
 @Component({
     selector: 'settings',
+    standalone: false,
     template: `
         <div class="pairsButton" [class.pairsButtonSelected]="selectedDifficulty === difficulty.EASY" (click)="selectDifficulty(difficulty.EASY)">EASY</div>
         <div class="pairsButton" [class.pairsButtonSelected]="selectedDifficulty === difficulty.NORMAL" (click)="selectDifficulty(difficulty.NORMAL)">NORMAL</div>
