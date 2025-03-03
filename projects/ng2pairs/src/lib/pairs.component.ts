@@ -3,15 +3,15 @@ import { GameMode } from './gamemode';
 import { Pairs } from './pairs';
 
 @Component({
-    selector: 'pairs',
+    selector: 'lib-pairs',
     standalone: false,
     template: `<div class="pairs">
                 <div *ngIf="selectGameMode">
-                    <div class="pairsButton" (click)="toSettingsSinglePlayer()">SINGLE</div>
-                    <div class="pairsButton" (click)="toSettingsMultiPlayer()">MULTI</div>
+                    <div class="pairsButton" (click)="toSettingsSinglePlayer()" (keypress)="toSettingsSinglePlayer()" tabindex="0">SINGLE</div>
+                    <div class="pairsButton" (click)="toSettingsMultiPlayer()" (keypress)="toSettingsMultiPlayer()" tabindex="0">MULTI</div>
                 </div>
-                <settings *ngIf="!selectGameMode && !gameStarted" [mode]="selectedGameMode" (game)="startGame($event)"></settings>
-                <game *ngIf="gameStarted" [pairs]="pairs" (toMain)="selectGameMode = true; gameStarted = false"></game>
+                <lib-settings *ngIf="!selectGameMode && !gameStarted" [mode]="selectedGameMode" (game)="startGame($event)"></lib-settings>
+                <lib-game *ngIf="gameStarted" [pairs]="pairs" (toMain)="selectGameMode = true; gameStarted = false"></lib-game>
             </div>`,
     styles: [`
         .pairsButton {
@@ -49,9 +49,9 @@ import { Pairs } from './pairs';
 })
 export class PairsComponent {
 
-    selectGameMode : boolean = true;
+    selectGameMode  = true;
     selectedGameMode : GameMode = GameMode.SINGLE;
-    gameStarted: boolean = false;
+    gameStarted = false;
     pairs: Pairs | undefined;
 
     toSettingsSinglePlayer() {

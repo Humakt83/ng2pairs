@@ -1,9 +1,9 @@
 export abstract class Piece {
 
-  turned: boolean = false;
-  found: boolean = false;
+  turned = false;
+  found = false;
   pair: Piece | undefined;
-  display: string = '';
+  display = '';
   
   constructor(pair: Piece | undefined = undefined) {
       if (pair) {

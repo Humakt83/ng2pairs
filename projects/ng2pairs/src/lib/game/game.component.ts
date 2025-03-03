@@ -4,7 +4,7 @@ import { PairsService } from '../pairs.service';
 import { Piece } from './pieces/piece';
 
 @Component({
-    selector: 'game',
+    selector: 'lib-game',
     standalone: false,
     template: `
         <div  *ngIf="activePlayer">
@@ -15,9 +15,9 @@ import { Piece } from './pieces/piece';
 
         <div>
             <table>
-                <tr *ngFor="let row of pieceTable">
+                <tr *ngFor="let row of this.pieceTable">
                     <td *ngFor="let column of row" (click)="click(column)">
-                        <piece [piece]="column"></piece>
+                        <lib-piece [piece]="column"></lib-piece>
                     </td>
                 </tr>
             </table>
@@ -29,8 +29,8 @@ import { Piece } from './pieces/piece';
         </div>
 
         <div class="clicks"> {{clicks}} clicks </div>
-        <div class="pairsButton" (click)="backToMain()">Back to Main</div>
-        <div class="pairsButton" (click)="restart()">Restart</div>
+        <div class="pairsButton" (click)="backToMain()" tabindex="0" (keypress)="backToMain()">Back to Main</div>
+        <div class="pairsButton" (click)="restart()" tabindex="0" (keypress)="restart()">Restart</div>
     `,
     styles: [`
         .pairsButton {
@@ -143,8 +143,8 @@ export class GameComponent implements OnInit {
     pieces: Piece[] = [];
     pieceTable: Piece[][] | undefined;
     clickedPieces: Piece[] = [];
-    clicks: number = 0;
-    gameOver: boolean = false;
+    clicks = 0;
+    gameOver = false;
     activePlayer: Player | undefined;
     players: Player[] = [];
 
@@ -200,7 +200,7 @@ export class GameComponent implements OnInit {
         }
         let gameOverText;
         let highestScore = 0;
-        for (let player of this.players) {
+        for (const player of this.players) {
             if (player.score > highestScore) {
                 gameOverText = player.name + ' is victorious!';
                 highestScore = player.score;
@@ -215,7 +215,7 @@ export class GameComponent implements OnInit {
         if (this.pairs) {
             const tableModifier: number = this.pairs.getNumberOfPieces() > 10 && (this.pairs.getNumberOfPieces() * 2) % 10 === 0 ? 10 : 5;
             this.pieces = this.pairsService.generatePieces(this.pairs.getNumberOfPieces());
-            let pieceTable2 = Array((this.pairs.getNumberOfPieces() * 2) / tableModifier);
+            const pieceTable2 = Array((this.pairs.getNumberOfPieces() * 2) / tableModifier);
             for (let x = 0; x < pieceTable2.length; x++) {
                 pieceTable2[x] = [];
                 for (let y = 0; y < tableModifier; y++) {
@@ -228,7 +228,7 @@ export class GameComponent implements OnInit {
 
     private setNextActivePlayer() {
         if (this.activePlayer) {
-            let index = this.players.indexOf(this.activePlayer) + 1;            
+            const index = this.players.indexOf(this.activePlayer) + 1;            
             this.activePlayer = this.players[index >= this.players.length ? 0 : index];
         }
     }
@@ -243,7 +243,7 @@ export class GameComponent implements OnInit {
 
 class Player {
 
-    score: number = 0;
+    score = 0;
 
     constructor(public name: string) {
     }

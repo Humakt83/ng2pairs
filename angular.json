@@ -20,10 +20,8 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-            ],
-            "styles": [
-            ],
+            "assets": [],
+            "styles": [],
             "scripts": []
           },
           "configurations": {
@@ -102,6 +100,16 @@
               "zone.js",
               "zone.js/testing"
             ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ng2pairs/**/*.ts",
+              "projects/ng2pairs/**/*.html"
+            ],
+            "eslintConfig": "projects/ng2pairs/eslint.config.js"
           }
         }
       }

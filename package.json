@@ -14,10 +14,13 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
+    "angular-eslint": "19.2.0",
+    "eslint": "^9.21.0",
     "ng-packagr": "^19.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "typescript": "~5.5.0",
+    "typescript-eslint": "8.25.0",
     "zone.js": "~0.15.0"
   },
   "scripts": {
@@ -25,7 +28,8 @@
     "start": "ng serve",
     "build": "ng build",
     "build-library": "ng build ng2pairs",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "lint": "ng lint"
   },
   "repository": {
     "type": "git",

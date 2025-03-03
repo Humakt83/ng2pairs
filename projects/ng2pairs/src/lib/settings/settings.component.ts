@@ -1,24 +1,24 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { GameMode } from '../gamemode';
+import { GameMode } from '../gamemode';
 import { Difficulty } from '../difficulty';
 import { Pairs } from '../pairs';
 
 @Component({
-    selector: 'settings',
+    selector: 'lib-settings',
     standalone: false,
     template: `
-        <div class="pairsButton" [class.pairsButtonSelected]="selectedDifficulty === difficulty.EASY" (click)="selectDifficulty(difficulty.EASY)">EASY</div>
-        <div class="pairsButton" [class.pairsButtonSelected]="selectedDifficulty === difficulty.NORMAL" (click)="selectDifficulty(difficulty.NORMAL)">NORMAL</div>
-        <div class="pairsButton" [class.pairsButtonSelected]="selectedDifficulty === difficulty.HARD" (click)="selectDifficulty(difficulty.HARD)">HARD</div>
+        <div class="pairsButton" [class.pairsButtonSelected]="selectedDifficulty === difficulty.EASY" (click)="selectDifficulty(difficulty.EASY)" (keypress)="selectDifficulty(difficulty.EASY)" tabindex="0">EASY</div>
+        <div class="pairsButton" [class.pairsButtonSelected]="selectedDifficulty === difficulty.NORMAL" (click)="selectDifficulty(difficulty.NORMAL)" (keypress)="selectDifficulty(difficulty.NORMAL)" tabindex="0">NORMAL</div>
+        <div class="pairsButton" [class.pairsButtonSelected]="selectedDifficulty === difficulty.HARD" (click)="selectDifficulty(difficulty.HARD)" (keypress)="selectDifficulty(difficulty.HARD)" tabindex="0">HARD</div>
         <div *ngIf="mode === modes.MULTI" class="playerInputs">    
             <div class="playerInput" *ngFor="let player of players; let id = index">
-                <label>Player {{id + 1}}</label>
-                <input (blur)="setPlayerName(id, $event.target)" [ngModel]="players[id]">
+                <label [htmlFor]="'InputPlayerName' + id">Player {{id + 1}}</label>
+                <input name="'InputPlayerName' + id" (blur)="setPlayerName(id, $event.target)" [ngModel]="players[id]">
             </div>
-            <div class="playerButton" alt="Add player" (click)="addPlayer()">+</div>
-            <div class="playerButton" alt="Remove player" (click)="removePlayer()">-</div>
+            <div class="playerButton" alt="Add player" (click)="addPlayer()" (keypress)="addPlayer()" tabindex="0">+</div>
+            <div class="playerButton" alt="Remove player" (click)="removePlayer()" (keypress)="removePlayer()" tabindex="0">-</div>
         </div>
-        <div class="pairsButton" (click)="start()">START</div>
+        <div class="pairsButton" (click)="start()" (keypress)="start()" tabindex="0">START</div>
     `,
     styles: [`
         .pairsButton {
@@ -132,7 +132,7 @@ export class SettingsComponent {
 
     start() {
         if (this.mode !== GameMode.MULTI || this.players.length > 1) {
-            let players = this.mode === GameMode.MULTI ? this.players : [this.players[0]];
+            const players = this.mode === GameMode.MULTI ? this.players : [this.players[0]];
             this.game.emit(new Pairs(players, this.selectedDifficulty));
         }
     }
