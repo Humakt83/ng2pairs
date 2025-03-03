@@ -1,7 +1,7 @@
 {
-  "name": "ng2pairs",
+  "name": "ng2pairs-container",
   "version": "2.1.0",
-  "description": "Angular2 module for pairs game",
+  "description": "Angular module for pairs game, containing example app and library itself",
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.0",
     "@angular/animations": "^19.2.0",
@@ -32,8 +32,9 @@
     "url": "git+https://github.com/Humakt83/ng2pairs.git"
   },
   "keywords": [
-    "homm",
-    "maps"
+    "pairs",
+    "library",
+    "angular"
   ],
   "author": "Humakt83",
   "bugs": {

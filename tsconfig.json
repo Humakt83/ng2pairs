@@ -12,6 +12,9 @@
     "paths": {
       "ng2pairs": [
         "./dist/ng2pairs"
+      ],
+      "example": [
+        "./dist/example"
       ]
     },
     "skipLibCheck": true,

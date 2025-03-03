@@ -3,19 +3,19 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng2pairs-standalone": {
+    "example": {
       "projectType": "application",
       "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/example",
+      "sourceRoot": "projects/example/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
+            "index": "projects/example/src/index.html",
+            "main": "projects/example/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -57,10 +57,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ng2pairs-standalone:build:production"
+              "buildTarget": "example:build:production"
             },
             "development": {
-              "buildTarget": "ng2pairs-standalone:build:development"
+              "buildTarget": "example:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,15 +68,15 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "ng2pairs-standalone:build"
+            "buildTarget": "example:build"
           }
         }
       }
     },
     "ng2pairs": {
       "projectType": "library",
-      "root": "",
-      "sourceRoot": "src/pairs",
+      "root": "projects/ng2pairs",
+      "sourceRoot": "projects/ng2pairs/src",
       "prefix": "lib",
       "architect": {
         "build": {

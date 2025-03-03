@@ -1,5 +1,6 @@
 {
   "name": "ng2pairs",
+  "description": "Angular module library for pairs game",
   "version": "0.0.5",
   "peerDependencies": {
     "@angular/common": "^19.2.0",
@@ -8,5 +9,19 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "keywords": [
+    "pairs",
+    "library",
+    "angular"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Humakt83/ng2pairs.git"
+  },
+  "author": "Humakt83",
+  "bugs": {
+    "url": "https://github.com/Humakt83/ng2pairs/issues"
+  },
+  "sideEffects": false,
+  "homepage": "https://github.com/Humakt83/ng2pairs#readme"
 }
